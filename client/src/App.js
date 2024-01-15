@@ -12,7 +12,7 @@ function App() {
     const [activePage, setActivePage] = useState();
 
     return (
-        <div className="relative mx-4 sm:mx-auto max-w-xl my-8 p-6 border rounded-lg bg-gray-100 shadow-lg h-[50vh]">
+        <div className="relative sm:mx-auto max-w-xl my-8 p-1 sm:p-6 border rounded-lg bg-gray-100 shadow-lg h-[50vh]">
             <h1 className="text-center text-2xl lg:text-3xl mb-8">
                 {activePage ? activePage.title : 'Advanced Security System (ASS)'}
             </h1>
@@ -50,7 +50,7 @@ function App() {
                     </div>
                 </div>
             )}
-            {activePage?.el}
+            <div className="h-[13rem] overflow-y-scroll">{activePage?.el}</div>
         </div>
     );
 }

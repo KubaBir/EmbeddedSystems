@@ -20,10 +20,11 @@ export default function Passkeys() {
     if (!keys) return;
     return (
         <table className="w-full">
-            <tr>
+            <tr className="sticky top-0 bg-gray-100">
                 <th className="text-start">Key ID</th>
                 <th className="text-start">Owner name</th>
                 <th className="text-start">Last used</th>
+                <th></th>
             </tr>
 
             {keys.map((key) => {
@@ -32,6 +33,14 @@ export default function Passkeys() {
                         <td>{key.id}</td>
                         <td>{key.owner_name} </td>
                         <td>{moment(key.last_used).format('h:mm DD.MM.YYYY')}</td>
+                        <td>
+                            <button
+                                className="bg-red-600 my-1 w-[24px] h-[24px] rounded-md text-sm text-white"
+                                onClick={() => {}}
+                            >
+                                X
+                            </button>
+                        </td>
                     </tr>
                 );
             })}
