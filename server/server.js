@@ -3,10 +3,12 @@ const express = require('express');
 const mongo = require('./mongo');
 const controller = require('./controller');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const use = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post(
     '/log',
