@@ -37,3 +37,7 @@ exports.list.pending = async function () {
 exports.authenticate = async function (key_id, owner_name) {
     await Key.findOneAndUpdate({ id: key_id }, { verified: true, owner_name: owner_name });
 };
+
+exports.remove = async function (key_id) {
+    await Key.findOneAndDelete({ id: key_id });
+};

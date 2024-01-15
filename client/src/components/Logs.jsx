@@ -28,7 +28,7 @@ export default function Logs() {
 
             {logs.map((log) => {
                 return (
-                    <tr>
+                    <tr className="border-t last:border-b">
                         <td>{moment(log.timestamp).format('h:mm DD.MM.YYYY')}</td>
                         <td>{log.tag_id}</td>
                         <td>{log.id.substring(0, 10)} </td>

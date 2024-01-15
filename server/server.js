@@ -67,6 +67,17 @@ app.post(
     })
 );
 
+app.delete(
+    '/key/remove',
+    use(async (req, res) => {
+        const data = req.body;
+        if (!data.key) return res.status(404).send("'key' field is required");
+
+        await controller.removeKey(data.key);
+        res.status(200).send();
+    })
+);
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, async () => {
     await mongo.connect();

@@ -28,7 +28,7 @@ export default function Passkeys() {
 
             {keys.map((key) => {
                 return (
-                    <tr>
+                    <tr className="border-t last:border-b">
                         <td>{key.id}</td>
                         <td>{key.owner_name} </td>
                         <td>{moment(key.last_used).format('h:mm DD.MM.YYYY')}</td>

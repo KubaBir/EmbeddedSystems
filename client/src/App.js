@@ -18,7 +18,7 @@ function App() {
             </h1>
             {activePage ? (
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 mb-4">
-                    <button className="rounded-lg bg-orange-500 px-4 py-2" onClick={() => setActivePage()}>
+                    <button className="rounded-lg bg-gray-300 px-4 py-2" onClick={() => setActivePage()}>
                         Home
                     </button>
                 </div>

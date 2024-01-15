@@ -31,3 +31,7 @@ exports.listAuthRequests = async function () {
 exports.authenticateKey = async function (key_id, owner_name) {
     await key.authenticate(key_id, owner_name);
 };
+
+exports.removeKey = async function (key_id) {
+    await key.remove(key_id);
+};
