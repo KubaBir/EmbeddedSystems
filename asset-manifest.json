@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/EmbeddedSystems/static/css/main.22ec4857.css",
+    "main.js": "/EmbeddedSystems/static/js/main.8507817d.js",
+    "index.html": "/EmbeddedSystems/index.html",
+    "main.22ec4857.css.map": "/EmbeddedSystems/static/css/main.22ec4857.css.map",
+    "main.8507817d.js.map": "/EmbeddedSystems/static/js/main.8507817d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22ec4857.css",
+    "static/js/main.8507817d.js"
+  ]
+}
