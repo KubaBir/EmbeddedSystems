@@ -51,9 +51,6 @@ app.get(
 app.get(
     '/key/pending',
     use(async (req, res) => {
-        const data = req.body;
-        if (!data.key) return res.status(404).send("'key' field is required");
-
         const pending = await controller.listAuthRequests();
         res.status(201).send({ pending: pending });
     })
