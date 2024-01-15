@@ -36,7 +36,7 @@ app.post(
         if (!data.key) return res.status(400).send("'key' field is required");
 
         const isVerified = await controller.testKey(data.key);
-        await controller.createLog(data.tag);
+        await controller.createLog(data.key);
 
         res.status(201).send({ isVerified: isVerified });
     })
