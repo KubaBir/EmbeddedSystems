@@ -5,17 +5,34 @@ import moment from 'moment';
 export default function Passkeys() {
     const [keys, setKeys] = useState();
 
+    async function fetchLogs() {
+        const res = await fetch(`${settings.BACKEND_URL}/key`, {
+            method: 'GET',
+        });
+        const data = await res.json();
+        console.log(data.keys);
+        setKeys(data.keys);
+    }
+
     useEffect(() => {
-        async function fetchLogs() {
-            const res = await fetch(`${settings.BACKEND_URL}/key`, {
-                method: 'GET',
-            });
-            const data = await res.json();
-            console.log(data.keys);
-            setKeys(data.keys);
-        }
         fetchLogs();
     }, []);
+
+    async function handleDeleteKey(id) {
+        const res = await fetch(`${settings.BACKEND_URL}/key/remove`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                key: id,
+            }),
+        });
+
+        setTimeout(() => {
+            fetchLogs();
+        }, 500);
+    }
 
     if (!keys) return;
     return (
@@ -36,7 +53,7 @@ export default function Passkeys() {
                         <td>
                             <button
                                 className="bg-red-600 my-1 w-[24px] h-[24px] rounded-md text-sm text-white"
-                                onClick={() => {}}
+                                onClick={() => handleDeleteKey(key.id)}
                             >
                                 X
                             </button>
