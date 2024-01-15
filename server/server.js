@@ -14,7 +14,7 @@ app.post(
     '/log',
     use(async (req, res) => {
         const data = req.body;
-        if (!data.tag) return res.status(404).send("'tag' field is required");
+        if (!data.tag) return res.status(400).send("'tag' field is required");
 
         await controller.createLog(data.tag);
         res.status(201).send();
@@ -33,7 +33,7 @@ app.post(
     '/key',
     use(async (req, res) => {
         const data = req.body;
-        if (!data.key) return res.status(404).send("'key' field is required");
+        if (!data.key) return res.status(400).send("'key' field is required");
 
         const isVerified = await controller.testKey(data.key);
         res.status(201).send({ isVerified: isVerified });
@@ -60,7 +60,7 @@ app.post(
     '/key/authenticate',
     use(async (req, res) => {
         const data = req.body;
-        if (!data.key) return res.status(404).send("'key' field is required");
+        if (!data.key) return res.status(400).send("'key' field is required");
 
         await controller.authenticateKey(data.key, data.owner_name);
         res.status(200).send();

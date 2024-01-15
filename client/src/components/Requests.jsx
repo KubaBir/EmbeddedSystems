@@ -24,6 +24,10 @@ export default function Requests() {
     async function removeKey(id) {
         await fetch(`${settings.BACKEND_URL}/key/remove`, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ key: id }),
         });
         setTimeout(() => {
             fetchLogs();
@@ -38,12 +42,17 @@ export default function Requests() {
     async function handleAcceptKey() {
         await fetch(`${settings.BACKEND_URL}/key/authenticate`, {
             method: 'POST',
-            body: {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
                 key: targetKey,
                 owner_name: name,
-            },
+            }),
         });
-
+        setTimeout(() => {
+            fetchLogs();
+        }, 500);
         setShowModal(false);
     }
 
