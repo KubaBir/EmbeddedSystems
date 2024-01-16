@@ -85,11 +85,16 @@ try:
         id, data = nfc_reader.read()
         isVerified = verify_tag(id)
         if not isVerified:
+            sleep(2)
             continue  # Scan again. The tag used is waiting to be authorized via the web app
 
-        # Blink GREEN for 10s
-        sleep(2)
+        GPIO.output(GREEN, GPIO.LOW)
+        sleep(1)
+        GPIO.output(GREEN, GPIO.HIGH)
+        sleep(1)
+        GPIO.output(GREEN, GPIO.LOW)
         armed = True
+        # Blink GREEN for 10s
         for i in range(20):
             id, data = nfc_reader.read_no_block()
             if id is not None:
@@ -97,7 +102,7 @@ try:
                 if isVerified:
                     print("Activation canceled")
                     armed = False
-                    GPIO.output(36, GPIO.LOW)
+                    GPIO.output(GREEN, GPIO.LOW)
                     break
 
             GPIO.output(GREEN, GPIO.HIGH)
