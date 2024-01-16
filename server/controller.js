@@ -1,8 +1,8 @@
 const log = require('./models/log');
 const key = require('./models/key');
 
-exports.createLog = async function (tag_id) {
-    return await log.create(tag_id);
+exports.createLog = async function (tag_id, type) {
+    return await log.create(tag_id, type);
 };
 
 exports.listLogs = async function () {

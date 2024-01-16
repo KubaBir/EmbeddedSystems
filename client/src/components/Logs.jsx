@@ -20,10 +20,10 @@ export default function Logs() {
     if (!logs) return;
     return (
         <table className="w-full">
-            <tr>
+            <tr className="sticky top-0 bg-gray-100">
                 <th className="text-start">Date</th>
                 <th className="text-start">Tag ID</th>
-                <th className="text-start">Log ID</th>
+                <th className="text-start">Log type</th>
             </tr>
 
             {logs.map((log) => {
@@ -31,7 +31,7 @@ export default function Logs() {
                     <tr className="border-t last:border-b">
                         <td>{moment(log.timestamp).format('h:mm DD.MM.YYYY')}</td>
                         <td>{log.tag_id}</td>
-                        <td>{log.id.substring(0, 10)} </td>
+                        <td>{log.type} </td>
                     </tr>
                 );
             })}

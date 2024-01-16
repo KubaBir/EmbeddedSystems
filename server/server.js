@@ -13,10 +13,7 @@ app.use(cors());
 app.post(
     '/log',
     use(async (req, res) => {
-        const data = req.body;
-        if (!data.tag) return res.status(400).send("'tag' field is required");
-
-        await controller.createLog(data.tag);
+        await controller.createLog(null, 'alarm');
         res.status(201).send();
     })
 );
@@ -36,7 +33,7 @@ app.post(
         if (!data.key) return res.status(400).send("'key' field is required");
 
         const isVerified = await controller.testKey(data.key);
-        await controller.createLog(data.key);
+        await controller.createLog(data.key, isVerified ? 'success' : 'fail');
 
         res.status(201).send({ isVerified: isVerified });
     })
