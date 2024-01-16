@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const LogSchema = new mongoose.Schema({
     id: { type: String, required: true, unique: true },
     timestamp: { type: Date, required: true },
-    key_id: { type: String, required: true },
+    key_id: { type: String, required: false },
     type: { type: String },
 });
 const Log = mongoose.model('Log', LogSchema, 'log');
@@ -20,6 +20,7 @@ exports.create = async function (key_id, type) {
 
     const newLog = Log(data);
     await newLog.save();
+    console.log(newLog);
     return data;
 };
 

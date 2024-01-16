@@ -30,7 +30,7 @@ export default function Logs() {
                 return (
                     <tr className="border-t last:border-b">
                         <td>{moment(log.timestamp).format('h:mm DD.MM.YYYY')}</td>
-                        <td>{log.tag_id}</td>
+                        <td>{log.key_id}</td>
                         <td>{log.type} </td>
                     </tr>
                 );
