@@ -7,8 +7,8 @@ exports.auth = async function (username, password) {
     return await auth.authenticate(username, password);
 };
 
-exports.auth.update = async function (username, password, newPassword) {
-    return await auth.update(username, password, newPassword);
+exports.auth.update = async function (username, password, newPassword, email) {
+    return await auth.update(username, password, newPassword, email);
 };
 
 exports.createLog = async function (tag_id, type) {

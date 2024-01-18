@@ -94,7 +94,12 @@ app.post(
         if (!data.password || !data.username || !data.newPassword)
             return res.status(404).send('Provide username and password');
 
-        const status = await controller.auth.update(data.username, data.password, data.newPassword);
+        const status = await controller.auth.update(
+            data.username,
+            data.password,
+            data.newPassword,
+            data.email
+        );
         res.status(200).send({ status: status });
     })
 );

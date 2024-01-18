@@ -18,6 +18,7 @@ function App() {
     const [showModal, setShowModal] = useState();
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
+    const [email, setEmail] = useState();
     const [newPassword1, setNewPassword1] = useState();
     const [newPassword2, setNewPassword2] = useState();
 
@@ -34,12 +35,18 @@ function App() {
             warn('New passwords must match');
             return;
         }
+        // const res = await fetch(`http://localhost:8080/auth/update`, {
         const res = await fetch(`${settings.BACKEND_URL}/auth/update`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username: username, password: password, newPassword: newPassword1 }),
+            body: JSON.stringify({
+                username: username,
+                password: password,
+                newPassword: newPassword1,
+                email: email,
+            }),
         });
         const data = await res.json();
 
@@ -47,8 +54,9 @@ function App() {
         setPassword('');
         setNewPassword1('');
         setNewPassword2('');
+        setEmail('');
         setShowModal(false);
-        if (data.status) notify('Password changed');
+        if (data.status) return notify('Password changed');
         warn('Could not authenticate with provided credentials');
     }
 
@@ -125,6 +133,13 @@ function App() {
                         type="text"
                         onChange={(event) => setUsername(event.target.value)}
                         value={username}
+                    />
+                    <label>Email</label>
+                    <input
+                        className="my-1 px-2 py-1 w-full rounded-md bg-gray-200 focus-visible:outline-none"
+                        type="text"
+                        onChange={(event) => setEmail(event.target.value)}
+                        value={email}
                     />
                     <label>Old Password</label>
                     <input

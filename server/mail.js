@@ -1,6 +1,7 @@
 // create reusable transporter object
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const auth = require('./models/auth');
 
 console.log(process.env.PASS);
 let transporter = nodemailer.createTransport({
@@ -12,10 +13,11 @@ let transporter = nodemailer.createTransport({
 });
 
 exports.mail = async function (to) {
+    const admin = await auth.get('admin');
     // setup email data
     let mailOptions = {
         from: 'kubabir2002@gmail',
-        to: 'kubabir@outlook.com',
+        to: admin.email,
         subject: 'Alarm Triggered!',
         text: 'Your alarm system has been triggered. Please go to the admin page to view the logs.',
     };
