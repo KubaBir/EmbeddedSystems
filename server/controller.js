@@ -1,5 +1,14 @@
 const log = require('./models/log');
 const key = require('./models/key');
+const auth = require('./models/auth');
+
+exports.auth = async function (username, password) {
+    return await auth.authenticate(username, password);
+};
+
+exports.auth.update = async function (username, password, newPassword) {
+    return await auth.update(username, password, newPassword);
+};
 
 exports.createLog = async function (tag_id, type) {
     return await log.create(tag_id, type);

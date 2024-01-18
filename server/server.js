@@ -77,6 +77,28 @@ app.delete(
     })
 );
 
+app.post(
+    '/auth',
+    use(async (req, res) => {
+        const data = req.body;
+        if (!data.password || !data.username) return res.status(404).send('Provide username and password');
+
+        const status = await controller.auth(data.username, data.password);
+        res.status(200).send({ status: status });
+    })
+);
+app.post(
+    '/auth/update',
+    use(async (req, res) => {
+        const data = req.body;
+        if (!data.password || !data.username || !data.newPassword)
+            return res.status(404).send('Provide username and password');
+
+        const status = await controller.auth.update(data.username, data.password, data.newPassword);
+        res.status(200).send({ status: status });
+    })
+);
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, async () => {
     await mongo.connect();

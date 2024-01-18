@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import settings from '../settings.json';
 import moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Requests() {
     const [keys, setKeys] = useState();
@@ -39,6 +40,8 @@ export default function Requests() {
         setShowModal(true);
     }
 
+    const notify = (msg) => toast(msg);
+
     async function handleAcceptKey() {
         await fetch(`${settings.BACKEND_URL}/key/authenticate`, {
             method: 'POST',
@@ -50,6 +53,7 @@ export default function Requests() {
                 owner_name: name,
             }),
         });
+        notify('Key authenticated');
         setTimeout(() => {
             fetchLogs();
         }, 500);
