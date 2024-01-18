@@ -12,14 +12,14 @@ export default function Logs() {
             });
             const data = await res.json();
             console.log(data.logs);
-            setLogs(data.logs);
+            setLogs(data.logs.reverse());
         }
         fetchLogs();
     }, []);
 
     if (!logs) return;
     return (
-        <table className="w-full">
+        <table className="w-full bg-gray-100 pt-1">
             <tr className="sticky top-0 bg-gray-100">
                 <th className="text-start">Date</th>
                 <th className="text-start">Tag ID</th>
