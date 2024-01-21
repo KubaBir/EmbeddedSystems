@@ -99,7 +99,17 @@ function App() {
                                 Registered passkeys
                             </button>
                         </div>
-                        <div className="flex justify-center">
+                        <div className="flex justify-center text-sm mt-4">
+                            <button
+                                className="rounded-lg bg-slate-400 shadow-lg px-4 py-2"
+                                onClick={() => {
+                                    setShowModal(true);
+                                }}
+                            >
+                                Change Password
+                            </button>
+                        </div>
+                        <div className="flex justify-center text-sm">
                             <button
                                 className="rounded-lg bg-slate-400 shadow-lg px-4 py-2"
                                 onClick={() => {
@@ -110,23 +120,13 @@ function App() {
                                 Logout
                             </button>
                         </div>
-                        <div className="flex justify-center">
-                            <button
-                                className="rounded-lg bg-slate-400 shadow-lg px-4 py-2"
-                                onClick={() => {
-                                    setShowModal(true);
-                                }}
-                            >
-                                Change Password
-                            </button>
-                        </div>
                     </div>
                 )}
                 <div className="h-[13rem] overflow-y-auto">{activePage?.el}</div>
             </div>
             <ToastContainer hideProgressBar={true} />
             {showModal && (
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-300 rounded-lg p-4 shadow-lg w-[90%] md:w-[50%] lg:w-[40%]">
+                <div className="absolute left-1/2 top-[2rem] -translate-x-1/2 bg-gray-300 rounded-lg p-4 shadow-lg w-[90%] md:w-[50%] lg:w-[40%]">
                     <label>Username</label>
                     <input
                         className="my-1 px-2 py-1 w-full rounded-md bg-gray-200 focus-visible:outline-none"
@@ -134,19 +134,19 @@ function App() {
                         onChange={(event) => setUsername(event.target.value)}
                         value={username}
                     />
-                    <label>Email</label>
+                    <label>Old Password</label>
+                    <input
+                        className="my-1 mb-6 px-2 py-1 w-full rounded-md bg-gray-200 focus-visible:outline-none"
+                        type="password"
+                        onChange={(event) => setPassword(event.target.value)}
+                        value={password}
+                    />
+                    <label>New Email</label>
                     <input
                         className="my-1 px-2 py-1 w-full rounded-md bg-gray-200 focus-visible:outline-none"
                         type="text"
                         onChange={(event) => setEmail(event.target.value)}
                         value={email}
-                    />
-                    <label>Old Password</label>
-                    <input
-                        className="my-1 px-2 py-1 w-full rounded-md bg-gray-200 focus-visible:outline-none"
-                        type="password"
-                        onChange={(event) => setPassword(event.target.value)}
-                        value={password}
                     />
                     <label>New Password</label>
                     <input
